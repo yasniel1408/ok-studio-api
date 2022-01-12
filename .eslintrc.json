@@ -15,11 +15,14 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "no-console": "error",
+    "no-console": ["warn"],
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "class-methods-use-this": ["off", { "exceptMethods": ["error"] }],
     "@typescript-eslint/no-explicit-any": "off",
-    "import/no-extraneous-dependencies": ["off", {"devDependencies": ["**/*.test.js", "**/*.spec.js"]}]
+    "import/no-extraneous-dependencies": [
+      "off",
+      { "devDependencies": ["**/*.test.js", "**/*.spec.js"] }
+    ]
   }
 }
