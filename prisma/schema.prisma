@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+enum Type {
+  NINO
+  EMBARAZADA
+  BODA
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id          String @id @default(cuid())
+  name        String @unique
+  email       String @unique
+  password    String
+  rol         Role @default(USER)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Object {
+  id          String @id @default(cuid())
+  name        String @unique
+  price       Float
+  description String
+  type        Type
+  category    String
+  subcategory String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  images      ObjectImage[]
+}
+
+model ObjectImage {
+  id          String @id @default(cuid())
+  object      Object @relation(fields: [objectId], references: [id])
+  objectId    String
+  url         String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Client {
+  id          String @id @default(cuid())
+  name        String @unique
+  edad        Int
+  celular     String
+  fijo        String
+  notas       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  appointments  Appointment[]
+}
+
+model Contract {
+  id          String @id @default(cuid())
+  name        String @unique
+  type        Type
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  appointment Appointment?
+}
+
+model SampleImage {
+  id          String @id @default(cuid())
+  type        Type
+  url         String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Appointment {
+  id          String @id @default(cuid())
+  clientId    String
+  client      Client @relation(fields: [clientId], references: [id])
+  contractId  String?
+  contract    Contract? @relation(fields: [contractId], references: [id])
+  aceptado    String
+  notas       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+

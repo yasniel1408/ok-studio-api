@@ -5,3 +5,4 @@ yarn.lock
 .eslintcache
 combined.log
 error.log
+*.db
