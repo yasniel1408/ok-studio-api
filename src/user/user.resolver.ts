@@ -8,7 +8,7 @@ type ResolverContext = {
 };
 
 export const findAllUsers = (parent: any, args: any, context: ResolverContext): Promise<User[]> => {
-  if (!context.user) throw new Error('No user logged in');
+  if (context.user.role !== 'ADMIN') throw new Error('You do not have permissions');
   const users = context.orm.user.findMany();
   return users;
 };
