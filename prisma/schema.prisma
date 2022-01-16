@@ -10,15 +10,22 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-enum Type {
-  NINO
-  EMBARAZADA
-  BODA
+model Type {
+  id          String @id @default(cuid())
+  name        String @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  objects     Object[]
+  contracts   Contract[]
+  sample_images   SampleImage[]
 }
 
-enum Role {
-  USER
-  ADMIN
+model Role {
+  id          String @id @default(cuid())
+  name        String @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  users       User[]
 }
 
 model User {
@@ -26,7 +33,19 @@ model User {
   name        String @unique
   email       String @unique
   password    String
-  rol         Role @default(USER)
+  role        Role? @relation(fields: [roleId], references: [id])
+  roleId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  objects     FavoriteObjectsUser[]
+}
+
+model FavoriteObjectsUser {
+  id          String @id @default(cuid())
+  user        User @relation(fields: [userId], references: [id])
+  userId      String
+  object      Object @relation(fields: [objectId], references: [id])
+  objectId    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -36,12 +55,14 @@ model Object {
   name        String @unique
   price       Float
   description String
-  type        Type
+  type        Type @relation(fields: [typeId], references: [id])
+  typeId      String
   category    String
   subcategory String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   images      ObjectImage[]
+  users       FavoriteObjectsUser[]
 }
 
 model ObjectImage {
@@ -68,7 +89,8 @@ model Client {
 model Contract {
   id          String @id @default(cuid())
   name        String @unique
-  type        Type
+  type        Type @relation(fields: [typeId], references: [id])
+  typeId      String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   appointment Appointment?
@@ -76,7 +98,8 @@ model Contract {
 
 model SampleImage {
   id          String @id @default(cuid())
-  type        Type
+  type        Type @relation(fields: [typeId], references: [id])
+  typeId      String
   url         String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

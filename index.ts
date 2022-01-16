@@ -1,18 +1,14 @@
 import { ApolloServer } from 'apollo-server';
+import { PrismaClient } from '@prisma/client';
+import { userResolver, userTypeDefs } from './src/user';
 
-const typeDefs = `
-  type Query{
-      info: String
-  }
-`;
+const orm = new PrismaClient();
 
-const resolvers = {
-  Query: {
-    info: () => 'This is the API whit GraphQL'
-  }
-};
-
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs: [userTypeDefs],
+  resolvers: [userResolver],
+  context: { orm }
+});
 
 server.listen().then(({ url }) => {
   // eslint-disable-next-line no-console
