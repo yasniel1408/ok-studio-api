@@ -10,17 +10,25 @@ const userTypeDefs = gql`
     updatedAt: String!
     roleId: String!
   }
-  type Query {
-    findAllUsers: [User]
-  }
 
   input UserInput {
     name: String!
     email: String!
     password: String!
   }
+
+  input UserCredentials {
+    email: String!
+    password: String!
+  }
+
   type Mutation {
-    createUser(input: UserInput): User
+    signup(input: UserInput): User!
+    login(input: UserCredentials): String!
+  }
+
+  type Query {
+    findAllUsers: [User]
   }
 `;
 
