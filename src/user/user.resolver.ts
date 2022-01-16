@@ -1,13 +1,16 @@
 import type { PrismaClient, User } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import jsonwebtoken from 'jsonwebtoken';
+import newToken from '../common/jwt/newToken';
 
 type ResolverContext = {
   orm: PrismaClient;
+  user: User;
 };
 
 export const findAllUsers = (parent: any, args: any, context: ResolverContext): Promise<User[]> => {
-  return context.orm.user.findMany();
+  if (!context.user) throw new Error('No user logged in');
+  const users = context.orm.user.findMany();
+  return users;
 };
 
 export const signup = async (parent: any, args: any, context: ResolverContext): Promise<User> => {
@@ -23,7 +26,7 @@ export const signup = async (parent: any, args: any, context: ResolverContext): 
   return user;
 };
 
-export async function login(parent: any, args: any, context: ResolverContext): Promise<User> {
+export async function login(parent: any, args: any, context: ResolverContext): Promise<string> {
   const data = args.input;
   const { email, password } = data;
   const user = await context.orm.user.findFirst({
@@ -38,9 +41,7 @@ export async function login(parent: any, args: any, context: ResolverContext): P
   if (!valid) {
     throw new Error('Incorrect password');
   }
-  return jsonwebtoken.sign({ user }, process.env.JWT_SECRET, {
-    expiresIn: '1d'
-  });
+  return newToken(user);
 }
 
 export const userResolver: Record<keyof User, (parent: User) => unknown> = {
