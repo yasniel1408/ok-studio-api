@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server';
+import type { Object } from '@prisma/client';
 
 const typeTypeDefs = gql`
   type Type {

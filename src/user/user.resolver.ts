@@ -1,4 +1,4 @@
-import type { PrismaClient, User } from '@prisma/client';
+import type { Prisma, PrismaClient, User } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import newToken from '../common/jwt/newToken';
 
@@ -7,9 +7,17 @@ type ResolverContext = {
   user: User;
 };
 
-export const findAllUsers = (parent: any, args: any, context: ResolverContext): Promise<User[]> => {
-  if (context.user.role !== 'ADMIN') throw new Error('You do not have permissions');
-  const users = context.orm.user.findMany();
+export const findAllUsers = (
+  parent: any,
+  args: { skip?: number; take?: number; where?: Prisma.UserWhereInput },
+  context: ResolverContext
+): Promise<User[]> => {
+  // if (context.user.role !== 'ADMIN') throw new Error('You do not have permissions');
+  const users = context.orm.user.findMany({
+    skip: args?.skip,
+    take: args?.take,
+    where: args?.where
+  });
   return users;
 };
 

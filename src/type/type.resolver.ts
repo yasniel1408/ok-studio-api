@@ -6,7 +6,9 @@ type ResolverContext = {
 };
 
 export const findAllTypes = (parent: any, args: any, context: ResolverContext): Promise<Type[]> => {
-  const types = context.orm.type.findMany();
+  const types = context.orm.type.findMany({
+    include: { objects: true, contracts: true, sample_images: true }
+  });
   return types;
 };
 

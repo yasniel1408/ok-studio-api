@@ -11,6 +11,25 @@ const userTypeDefs = gql`
     role: String!
   }
 
+  input UserWhereInput {
+    name: StringFilterInput
+    email: StringFilterInput
+  }
+
+  input StringFilterInput {
+    equals: String
+    in: [String]
+    notIn: [String]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    contains: String
+    startsWith: String
+    endsWith: String
+    not: String
+  }
+
   input UserInput {
     name: String!
     email: String!
@@ -28,7 +47,7 @@ const userTypeDefs = gql`
   }
 
   type Query {
-    findAllUsers: [User]
+    findAllUsers(skip: Int, take: Int, where: UserWhereInput): [User]
   }
 `;
 
