@@ -13,7 +13,6 @@ const server = new ApolloServer({
   context: ({ req }) => {
     const authorization = req.headers.authorization || '';
     const user = getUser({ authorization });
-    console.log(user);
     return { orm, user };
   }
 });

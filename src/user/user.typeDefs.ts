@@ -8,7 +8,7 @@ const userTypeDefs = gql`
     password: String!
     createdAt: String!
     updatedAt: String!
-    roleId: String!
+    role: String!
   }
 
   input UserInput {

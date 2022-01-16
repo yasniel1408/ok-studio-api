@@ -20,7 +20,6 @@ export const signup = async (parent: any, args: any, context: ResolverContext): 
     data: {
       ...data,
       password: await bcrypt.hash(password, 10)
-      // roleId: '1'
     }
   });
   return user;
@@ -51,7 +50,7 @@ export const userResolver: Record<keyof User, (parent: User) => unknown> = {
   password: (parent) => parent.password,
   createdAt: (parent) => parent.createdAt,
   updatedAt: (parent) => parent.updatedAt,
-  roleId: (parent) => parent.roleId
+  role: (parent) => parent.role
 };
 
 export default {
