@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { PrismaClient } from '@prisma/client';
 import prompt from 'prompt';
 import encryptPassword from './password/encryptPassword';
@@ -22,8 +21,6 @@ prompt.get(
     {
       name: 'password',
       message: 'Password',
-      hidden: true,
-      replace: '*',
       required: true
     }
   ],
@@ -34,7 +31,7 @@ prompt.get(
     }
     const name: string = result.name as string;
     const email: string = result.email as string;
-    const hashedPassword = await encryptPassword(result.password);
+    const hashedPassword = await encryptPassword(result.password as string);
 
     const user = await orm.user.create({
       data: {
