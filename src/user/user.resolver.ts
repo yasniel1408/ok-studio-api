@@ -1,6 +1,8 @@
 import type { Prisma, PrismaClient, User } from '@prisma/client';
-import bcrypt from 'bcrypt';
+import Role from '../common/enums/roles';
 import newToken from '../common/jwt/newToken';
+import comparePasswords from '../common/password/comparePasswords';
+import encryptPassword from '../common/password/encryptPassword';
 
 type ResolverContext = {
   orm: PrismaClient;
@@ -12,7 +14,7 @@ export const findAllUsers = (
   args: { skip?: number; take?: number; where?: Prisma.UserWhereInput },
   context: ResolverContext
 ): Promise<User[]> => {
-  // if (context.user.role !== 'ADMIN') throw new Error('You do not have permissions');
+  if (context.user.role !== Role.ADMIN) throw new Error('You do not have permissions');
   const users = context.orm.user.findMany({
     skip: args?.skip,
     take: args?.take,
@@ -27,7 +29,7 @@ export const signup = async (parent: any, args: any, context: ResolverContext): 
   const user = await context.orm.user.create({
     data: {
       ...data,
-      password: await bcrypt.hash(password, 10)
+      password: await encryptPassword(password)
     }
   });
   return user;
@@ -44,7 +46,7 @@ export async function login(parent: any, args: any, context: ResolverContext): P
   if (!user) {
     throw new Error('No user with that email');
   }
-  const valid = await bcrypt.compare(password, user.password);
+  const valid = await comparePasswords(password, user.password);
   if (!valid) {
     throw new Error('Incorrect password');
   }
