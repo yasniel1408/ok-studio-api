@@ -1,4 +1,5 @@
 import type { Prisma, PrismaClient, User } from '@prisma/client';
+import { AuthenticationError } from 'apollo-server-core';
 import Role from '../common/enums/roles';
 import newToken from '../common/jwt/newToken';
 import comparePasswords from '../common/password/comparePasswords';
@@ -44,11 +45,11 @@ export async function login(parent: any, args: any, context: ResolverContext): P
     }
   });
   if (!user) {
-    throw new Error('No user with that email');
+    throw new AuthenticationError('No user with that email');
   }
   const valid = await comparePasswords(password, user.password);
   if (!valid) {
-    throw new Error('Incorrect password');
+    throw new AuthenticationError('Incorrect password');
   }
   return newToken(user);
 }
