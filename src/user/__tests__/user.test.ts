@@ -4,14 +4,9 @@ import gql from 'graphql-tag';
 import EasyGraphQLTester from 'easygraphql-tester';
 
 import { userTypeDefs } from '..';
-import { typeTypeDefs } from '../../type';
-import { typeResolver } from '../../type/type.resolver';
 import { userResolver } from '../user.resolver';
 
-const typeDefs = [userTypeDefs, typeTypeDefs];
-const resolvers = [userResolver, typeResolver];
-
-const tester = new EasyGraphQLTester(typeDefs, resolvers);
+const tester = new EasyGraphQLTester(userTypeDefs, userResolver);
 
 export type MockResolverContext = {
   orm: DeepMockProxy<PrismaClient>;
