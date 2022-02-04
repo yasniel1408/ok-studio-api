@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ApolloServer } from 'apollo-server-express';
 import { PrismaClient, User } from '@prisma/client';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';

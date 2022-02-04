@@ -11,7 +11,8 @@
     "prod": "cross-env NODE_ENV=production tsc && node ./dist/index.js",
     "test": "cross-env NODE_ENV=test jest src",
     "create-admin": "ts-node ./src/common/createAdmin.ts --unhandled-rejections=strict",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prisma-dev": "npx prisma migrate dev"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,7 @@
     "jest-mock-extended": "^2.0.4",
     "jsonwebtoken": "^8.5.1",
     "lowdb": "1.0.0",
-    "prisma": "^3.8.1",
+    "prisma": "^3.9.1",
     "prompt": "^1.2.1",
     "ts-node": "^10.4.0"
   },

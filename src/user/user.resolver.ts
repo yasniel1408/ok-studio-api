@@ -15,7 +15,8 @@ export const findAllUsers = (
   args: { skip?: number; take?: number; where?: Prisma.UserWhereInput },
   context: ResolverContext
 ): Promise<User[]> => {
-  if (context.user.role !== Role.ADMIN) throw new Error('You do not have permissions');
+  console.log(context.user);
+  if (context.user?.role !== Role.ADMIN) throw new Error('You do not have permissions');
   const users = context.orm.user.findMany({
     skip: args?.skip,
     take: args?.take,
