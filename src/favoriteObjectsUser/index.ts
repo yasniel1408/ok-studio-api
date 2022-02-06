@@ -1,4 +1,4 @@
-import favoriteObjectsUserResolver from './favoriteObjectsUser.resolver';
-import favoriteObjectsUserTypeDefs from './favoriteObjectsUser.typeDefs';
+import favoriteObjectsUserResolver from './favoriteObjectsUserResolver';
+import { favoriteObjectsUserTypeDefs } from './favoriteObjectsUserTypeDefs';
 
 export { favoriteObjectsUserResolver, favoriteObjectsUserTypeDefs };

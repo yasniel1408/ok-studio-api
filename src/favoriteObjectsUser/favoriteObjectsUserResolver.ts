@@ -1,4 +1,5 @@
 import type { FavoriteObjectsUser, PrismaClient, User } from '@prisma/client';
+import { ResolverParent } from '../@types/ResolverParent';
 import verifyIfItIsAdmin from '../common/middlewares/verifyIfItIsAdmin';
 
 type ResolverContext = {
@@ -7,7 +8,7 @@ type ResolverContext = {
 };
 
 export const findAllFavoriteObjectsUser = (
-  parent: any,
+  parent: ResolverParent,
   args: any,
   context: ResolverContext
 ): Promise<FavoriteObjectsUser[]> => {
@@ -15,7 +16,7 @@ export const findAllFavoriteObjectsUser = (
 };
 
 export const createFavoriteObjectsUser = async (
-  parent: any,
+  parent: ResolverParent,
   args: any,
   context: ResolverContext
 ): Promise<FavoriteObjectsUser> => {
