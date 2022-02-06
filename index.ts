@@ -7,9 +7,14 @@ import http from 'http';
 import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path';
-import { userResolver, userTypeDefs } from './src/user';
 import getUser from './src/common/jwt/getUser';
+import { userResolver, userTypeDefs } from './src/user';
 import { typeResolver, typeTypeDefs } from './src/type';
+import {
+  favoriteObjectsUserResolver,
+  favoriteObjectsUserTypeDefs
+} from './src/favoriteObjectsUser';
+import { objectResolver, objectTypeDefs } from './src/object';
 
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'okstudiosupersecretkey';
 const port = process.env.PORT || 4000;
@@ -29,8 +34,8 @@ app.get('/', (req, res) => {
 
 (async () => {
   const apolloServer = new ApolloServer({
-    typeDefs: [userTypeDefs, typeTypeDefs],
-    resolvers: [userResolver, typeResolver],
+    typeDefs: [userTypeDefs, typeTypeDefs, favoriteObjectsUserTypeDefs, objectTypeDefs],
+    resolvers: [userResolver, typeResolver, favoriteObjectsUserResolver, objectResolver],
     context: ({ req }) => {
       const authorization = req.headers.authorization || '';
       const user: User = getUser({ authorization });

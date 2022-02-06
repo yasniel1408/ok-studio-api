@@ -1,15 +1,14 @@
-import type { PrismaClient, Type, User } from '@prisma/client';
-
-type ResolverContext = {
-  orm: PrismaClient;
-  user: User;
-};
+import type { Type } from '@prisma/client';
+import { ResolverContext } from '../@types/ResolverContext';
+import verifyIfItIsAdmin from '../common/middlewares/verifyIfItIsAdmin';
 
 export const findAllTypes = (parent: any, args: any, context: ResolverContext): Promise<Type[]> => {
-  const types = context.orm.type.findMany({
-    include: { objects: true, contracts: true, sample_images: true }
-  });
-  return types;
+  return (
+    verifyIfItIsAdmin({ context }) &&
+    context.orm.type.findMany({
+      include: { objects: true, contracts: true, sample_images: true }
+    })
+  );
 };
 
 export const createType = async (
@@ -18,9 +17,11 @@ export const createType = async (
   context: ResolverContext
 ): Promise<Type> => {
   const data = args.input;
-  const user = await context.orm.type.create({
-    data
-  });
+  const user =
+    verifyIfItIsAdmin({ context }) &&
+    (await context.orm.type.create({
+      data
+    }));
   return user;
 };
 

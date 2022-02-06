@@ -53,15 +53,20 @@ export default gql`
     objects: [Object]!
   }
 
-  input TypeInput {
+  input ObjectInput {
     name: String!
+    price: Float!
+    description: String!
+    typeId: ID!
+    category: String!
+    subcategory: String!
   }
 
   type Mutation {
-    createType(input: TypeInput): Type!
+    createObject(input: ObjectInput): Object!
   }
 
   type Query {
-    findAllTypes: [Type]
+    findAllObject: [Object]
   }
 `;

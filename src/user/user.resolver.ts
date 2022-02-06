@@ -1,27 +1,24 @@
-import type { Prisma, PrismaClient, User } from '@prisma/client';
+import type { Prisma, User } from '@prisma/client';
 import { AuthenticationError } from 'apollo-server-core';
-import Role from '../common/enums/roles';
+import { ResolverContext } from '../@types/ResolverContext';
 import newToken from '../common/jwt/newToken';
+import verifyIfItIsAdmin from '../common/middlewares/verifyIfItIsAdmin';
 import comparePasswords from '../common/password/comparePasswords';
 import encryptPassword from '../common/password/encryptPassword';
-
-type ResolverContext = {
-  orm: PrismaClient;
-  user: User;
-};
 
 export const findAllUsers = (
   parent: any,
   args: { skip?: number; take?: number; where?: Prisma.UserWhereInput },
   context: ResolverContext
 ): Promise<User[]> => {
-  if (context.user?.role !== Role.ADMIN) throw new Error('You do not have permissions');
-  const users = context.orm.user.findMany({
-    skip: args?.skip,
-    take: args?.take,
-    where: args?.where
-  });
-  return users;
+  return (
+    verifyIfItIsAdmin({ context }) &&
+    context.orm.user.findMany({
+      skip: args?.skip,
+      take: args?.take,
+      where: args?.where
+    })
+  );
 };
 
 export const signup = async (parent: any, args: any, context: ResolverContext): Promise<User> => {

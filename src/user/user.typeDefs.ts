@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 
-const userTypeDefs = gql`
+export default gql`
   type User {
     id: ID!
     name: String!
@@ -50,5 +50,3 @@ const userTypeDefs = gql`
     findAllUsers(skip: Int, take: Int, where: UserWhereInput): [User]
   }
 `;
-
-export default userTypeDefs;
