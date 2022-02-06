@@ -53,4 +53,15 @@ export const schema = gql`
     createdAt: String!
     updatedAt: String!
   }
+
+  type Client {
+    id: ID!
+    name: String!
+    age: Int!
+    mobile: String!
+    homePhone: String!
+    notes: String!
+    createdAt: String!
+    updatedAt: String!
+  }
 `;
