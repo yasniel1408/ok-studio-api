@@ -1,14 +1,18 @@
-import type { Prisma, User } from '@prisma/client';
+import type { User } from '@prisma/client';
 import { AuthenticationError } from 'apollo-server-core';
 import { ResolverContext } from '../@types/ResolverContext';
+import { ResolverParent } from '../@types/ResolverParent';
 import newToken from '../common/jwt/newToken';
 import verifyIfItIsAdmin from '../common/middlewares/verifyIfItIsAdmin';
 import comparePasswords from '../common/password/comparePasswords';
 import encryptPassword from '../common/password/encryptPassword';
+import { UserCreateInput } from './@types/UserCreateInput';
+import { UserFilterArgs } from './@types/UserFilterArgs';
+import { UserLogin } from './@types/UserLogin';
 
 export const findAllUsers = (
-  parent: any,
-  args: { skip?: number; take?: number; where?: Prisma.UserWhereInput },
+  parent: ResolverParent,
+  args: UserFilterArgs,
   context: ResolverContext
 ): Promise<User[]> => {
   return (
@@ -21,21 +25,28 @@ export const findAllUsers = (
   );
 };
 
-export const signup = async (parent: any, args: any, context: ResolverContext): Promise<User> => {
-  const data = args.input;
-  const { password } = data;
+export const signup = async (
+  parent: ResolverParent,
+  args: { input?: UserCreateInput },
+  context: ResolverContext
+): Promise<User> => {
+  const { email, password, name } = args.input;
   const user = await context.orm.user.create({
     data: {
-      ...data,
+      name,
+      email,
       password: await encryptPassword(password)
     }
   });
   return user;
 };
 
-export async function login(parent: any, args: any, context: ResolverContext): Promise<string> {
-  const data = args.input;
-  const { email, password } = data;
+export async function login(
+  parent: ResolverParent,
+  args: { input: UserLogin },
+  context: ResolverContext
+): Promise<string> {
+  const { email, password } = args.input;
   const user = await context.orm.user.findFirst({
     where: {
       email

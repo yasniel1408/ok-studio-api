@@ -1,8 +1,13 @@
 import type { Type } from '@prisma/client';
+import { ResolverParent } from '../@types/ResolverParent';
 import { ResolverContext } from '../@types/ResolverContext';
 import verifyIfItIsAdmin from '../common/middlewares/verifyIfItIsAdmin';
 
-export const findAllTypes = (parent: any, args: any, context: ResolverContext): Promise<Type[]> => {
+export const findAllTypes = (
+  parent: ResolverParent,
+  args: any,
+  context: ResolverContext
+): Promise<Type[]> => {
   return (
     verifyIfItIsAdmin({ context }) &&
     context.orm.type.findMany({
@@ -12,7 +17,7 @@ export const findAllTypes = (parent: any, args: any, context: ResolverContext): 
 };
 
 export const createType = async (
-  parent: any,
+  parent: ResolverParent,
   args: any,
   context: ResolverContext
 ): Promise<Type> => {
@@ -39,5 +44,5 @@ export default {
   Mutation: {
     createType
   },
-  User: typeResolver
+  Type: typeResolver
 };

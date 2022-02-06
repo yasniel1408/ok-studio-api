@@ -1,31 +1,23 @@
-import { gql } from 'apollo-server';
+import { gql } from 'graphql-tag';
 
-export default gql`
+export const schema = gql`
   type User {
     id: ID!
     name: String!
     email: String!
     password: String!
+    role: String!
     createdAt: String!
     updatedAt: String!
-    role: String!
+    objects: [Object]!
   }
 
   type FavoriteObjectsUser {
     id: ID!
     user: User!
     userId: ID!
-    object: Object!
     objectId: ID!
-    createdAt: String!
-    updatedAt: String!
-  }
-
-  type ObjectImage {
-    id: ID!
-    url: String!
     object: Object!
-    objectId: ID!
     createdAt: String!
     updatedAt: String!
   }
@@ -45,28 +37,20 @@ export default gql`
     updatedAt: String!
   }
 
+  type ObjectImage {
+    id: ID!
+    url: String!
+    object: Object!
+    objectId: ID!
+    createdAt: String!
+    updatedAt: String!
+  }
+
   type Type {
     id: ID!
     name: String!
     createdAt: String!
     updatedAt: String!
     objects: [Object]!
-  }
-
-  input ObjectInput {
-    name: String!
-    price: Float!
-    description: String!
-    typeId: ID!
-    category: String!
-    subcategory: String!
-  }
-
-  type Mutation {
-    createObject(input: ObjectInput): Object!
-  }
-
-  type Query {
-    findAllObject: [Object]
   }
 `;

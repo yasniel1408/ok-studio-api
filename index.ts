@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ApolloServer } from 'apollo-server-express';
 import { PrismaClient, User } from '@prisma/client';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
@@ -53,5 +52,6 @@ app.get('/', (req, res) => {
 
   // Modified server startup
   await httpServer.listen({ port });
+  // eslint-disable-next-line no-console
   console.log(`🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`);
 })();

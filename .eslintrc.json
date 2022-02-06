@@ -13,8 +13,9 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "graphql"],
   "rules": {
+    "import/prefer-default-export": ["off"],
     "no-import-module-exports": ["off"],
     "no-console": ["warn"],
     "import/no-unresolved": ["off"],

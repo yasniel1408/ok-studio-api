@@ -1,4 +1,4 @@
-import userResolver from './user.resolver';
-import userTypeDefs from './user.typeDefs';
+import { userTypeDefs } from './userTypeDefs';
+import userResolver from './userResolver';
 
 export { userResolver, userTypeDefs };
