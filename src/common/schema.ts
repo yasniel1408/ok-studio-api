@@ -1,6 +1,14 @@
 import { gql } from 'graphql-tag';
 
 export const schema = gql`
+  type Type {
+    id: ID!
+    name: String!
+    createdAt: String!
+    updatedAt: String!
+    objects: [Object]!
+  }
+
   type User {
     id: ID!
     name: String!
@@ -44,13 +52,5 @@ export const schema = gql`
     objectId: ID!
     createdAt: String!
     updatedAt: String!
-  }
-
-  type Type {
-    id: ID!
-    name: String!
-    createdAt: String!
-    updatedAt: String!
-    objects: [Object]!
   }
 `;

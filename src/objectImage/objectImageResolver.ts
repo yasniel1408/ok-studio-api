@@ -8,7 +8,12 @@ export const findAllObjectImage = (
   args: any,
   context: ResolverContext
 ): Promise<ObjectImage[]> => {
-  return verifyIfItIsAUser({ context }) && context.orm.objectImage.findMany();
+  return (
+    verifyIfItIsAUser({ context }) &&
+    context.orm.objectImage.findMany({
+      include: { object: true }
+    })
+  );
 };
 
 export const createObjectImage = async (

@@ -1,17 +1,17 @@
 import { DocumentNode } from 'graphql';
 import { gql } from 'apollo-server';
 import { schema } from '../common/schema';
-import { FavoriteObjectsUserInput } from './fragments/FavoriteObjectsUserInput';
+import { ObjectsImageInput } from './fragments/ObjectsImageInput';
 
 export const objectImageTypeDefs: DocumentNode = gql`
   ${schema}
-  ${FavoriteObjectsUserInput}
+  ${ObjectsImageInput}
 
   type Mutation {
-    createFavoriteObjectsUser(input: FavoriteObjectsUserInput): FavoriteObjectsUser!
+    createObjectImage(input: ObjectsImageInput): ObjectImage!
   }
 
   type Query {
-    findAllFavoriteObjectsUser: [FavoriteObjectsUser]
+    findAllObjectImage: [ObjectImage]
   }
 `;
