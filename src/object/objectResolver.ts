@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import type { Object } from '@prisma/client';
 import { ResolverContext } from '../@types/ResolverContext';
+import { ResolverParent } from '../@types/ResolverParent';
 import verifyIfItIsAUser from '../common/middlewares/verifyIfItIsAUser';
 
 export const findAllObject = (
-  parent: any,
+  parent: ResolverParent,
   args: any,
   context: ResolverContext
 ): Promise<Object[]> => {
@@ -17,7 +18,7 @@ export const findAllObject = (
 };
 
 export const createObject = async (
-  parent: any,
+  parent: ResolverParent,
   args: any,
   context: ResolverContext
 ): Promise<Object> => {
@@ -31,15 +32,15 @@ export const createObject = async (
 };
 
 export const objectResolver: Record<keyof Object, (parent: Object) => unknown> = {
-  id: (parent) => parent.id,
-  name: (parent) => parent.name,
-  price: (parent) => parent.price,
-  description: (parent) => parent.description,
-  typeId: (parent) => parent.typeId,
-  category: (parent) => parent.category,
-  subcategory: (parent) => parent.subcategory,
-  createdAt: (parent) => parent.createdAt,
-  updatedAt: (parent) => parent.updatedAt
+  id: ({ id }) => id,
+  name: ({ name }) => name,
+  price: ({ price }) => price,
+  description: ({ description }) => description,
+  typeId: ({ typeId }) => typeId,
+  category: ({ category }) => category,
+  subcategory: ({ subcategory }) => subcategory,
+  createdAt: ({ createdAt }) => createdAt,
+  updatedAt: ({ updatedAt }) => updatedAt
 };
 
 export default {

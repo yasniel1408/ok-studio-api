@@ -63,13 +63,13 @@ export async function login(
 }
 
 export const userResolver: Record<keyof User, (parent: User) => unknown> = {
-  id: (parent) => parent.id,
-  name: (parent) => parent.name,
-  email: (parent) => parent.email,
-  password: (parent) => parent.password,
-  createdAt: (parent) => parent.createdAt,
-  updatedAt: (parent) => parent.updatedAt,
-  role: (parent) => parent.role
+  id: ({ id }) => id,
+  name: ({ name }) => name,
+  email: ({ email }) => email,
+  password: ({ password }) => password,
+  createdAt: ({ createdAt }) => createdAt,
+  updatedAt: ({ updatedAt }) => updatedAt,
+  role: ({ role }) => role
 };
 
 export default {

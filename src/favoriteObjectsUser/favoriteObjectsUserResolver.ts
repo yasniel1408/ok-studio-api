@@ -33,11 +33,11 @@ export const favoriteObjectsUserResolver: Record<
   keyof FavoriteObjectsUser,
   (parent: FavoriteObjectsUser) => unknown
 > = {
-  id: (parent) => parent.id,
-  objectId: (parent) => parent.objectId,
-  userId: (parent) => parent.userId,
-  createdAt: (parent) => parent.createdAt,
-  updatedAt: (parent) => parent.updatedAt
+  id: ({ id }) => id,
+  objectId: ({ objectId }) => objectId,
+  userId: ({ userId }) => userId,
+  createdAt: ({ createdAt }) => createdAt,
+  updatedAt: ({ updatedAt }) => updatedAt
 };
 
 export default {

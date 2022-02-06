@@ -31,10 +31,10 @@ export const createType = async (
 };
 
 export const typeResolver: Record<keyof Type, (parent: Type) => unknown> = {
-  id: (parent) => parent.id,
-  name: (parent) => parent.name,
-  createdAt: (parent) => parent.createdAt,
-  updatedAt: (parent) => parent.updatedAt
+  id: ({ id }) => id,
+  name: ({ name }) => name,
+  createdAt: ({ createdAt }) => createdAt,
+  updatedAt: ({ updatedAt }) => updatedAt
 };
 
 export default {
