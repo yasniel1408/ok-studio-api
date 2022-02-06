@@ -64,4 +64,12 @@ export const schema = gql`
     createdAt: String!
     updatedAt: String!
   }
+
+  type Contract {
+    id: ID!
+    name: String!
+    typeId: ID!
+    createdAt: String!
+    updatedAt: String!
+  }
 `;
