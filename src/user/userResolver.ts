@@ -1,7 +1,7 @@
 import type { User } from '@prisma/client';
 import { AuthenticationError } from 'apollo-server-core';
-import { ResolverContext } from '../@types/ResolverContext';
-import { ResolverParent } from '../@types/ResolverParent';
+import { ResolverContext } from '../common/@types/ResolverContext';
+import { ResolverParent } from '../common/@types/ResolverParent';
 import newToken from '../common/jwt/newToken';
 import verifyIfItIsAdmin from '../common/middlewares/verifyIfItIsAdmin';
 import comparePasswords from '../common/password/comparePasswords';

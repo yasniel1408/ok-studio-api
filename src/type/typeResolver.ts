@@ -1,6 +1,6 @@
 import type { Type } from '@prisma/client';
-import { ResolverParent } from '../@types/ResolverParent';
-import { ResolverContext } from '../@types/ResolverContext';
+import { ResolverParent } from '../common/@types/ResolverParent';
+import { ResolverContext } from '../common/@types/ResolverContext';
 import verifyIfItIsAdmin from '../common/middlewares/verifyIfItIsAdmin';
 
 export const findAllTypes = (

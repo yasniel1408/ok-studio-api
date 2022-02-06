@@ -1,4 +1,4 @@
-import { ResolverContext } from '../../@types/ResolverContext';
+import { ResolverContext } from '../@types/ResolverContext';
 import Role from '../enums/roles';
 
 const verifyIfItIsAdmin = ({ context }: { context: ResolverContext }) => {

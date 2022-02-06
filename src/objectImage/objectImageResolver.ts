@@ -1,6 +1,6 @@
 import type { ObjectImage } from '@prisma/client';
-import { ResolverContext } from '../@types/ResolverContext';
-import { ResolverParent } from '../@types/ResolverParent';
+import { ResolverContext } from '../common/@types/ResolverContext';
+import { ResolverParent } from '../common/@types/ResolverParent';
 import verifyIfItIsAUser from '../common/middlewares/verifyIfItIsAUser';
 
 export const findAllObjectImage = (

@@ -1,5 +1,5 @@
 import type { FavoriteObjectsUser, PrismaClient, User } from '@prisma/client';
-import { ResolverParent } from '../@types/ResolverParent';
+import { ResolverParent } from '../common/@types/ResolverParent';
 import verifyIfItIsAdmin from '../common/middlewares/verifyIfItIsAdmin';
 
 type ResolverContext = {
