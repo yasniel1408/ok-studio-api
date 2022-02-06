@@ -14,6 +14,7 @@ import {
   favoriteObjectsUserTypeDefs
 } from './src/favoriteObjectsUser';
 import { objectResolver, objectTypeDefs } from './src/object';
+import { objectImageResolver, objectImageTypeDefs } from './src/objectImage';
 
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'okstudiosupersecretkey';
 const port = process.env.PORT || 4000;
@@ -33,8 +34,20 @@ app.get('/', (req, res) => {
 
 (async () => {
   const apolloServer = new ApolloServer({
-    typeDefs: [userTypeDefs, typeTypeDefs, favoriteObjectsUserTypeDefs, objectTypeDefs],
-    resolvers: [userResolver, typeResolver, favoriteObjectsUserResolver, objectResolver],
+    typeDefs: [
+      userTypeDefs,
+      typeTypeDefs,
+      favoriteObjectsUserTypeDefs,
+      objectTypeDefs,
+      objectImageTypeDefs
+    ],
+    resolvers: [
+      userResolver,
+      typeResolver,
+      favoriteObjectsUserResolver,
+      objectResolver,
+      objectImageResolver
+    ],
     context: ({ req }) => {
       const authorization = req.headers.authorization || '';
       const user: User = getUser({ authorization });
