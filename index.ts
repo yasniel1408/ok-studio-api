@@ -15,6 +15,7 @@ import {
 } from './src/favoriteObjectsUser';
 import { objectResolver, objectTypeDefs } from './src/object';
 import { objectImageResolver, objectImageTypeDefs } from './src/objectImage';
+import { clientResolver, clientTypeDefs } from './src/client';
 
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'okstudiosupersecretkey';
 const port = process.env.PORT || 4000;
@@ -39,14 +40,16 @@ app.get('/', (req, res) => {
       typeTypeDefs,
       favoriteObjectsUserTypeDefs,
       objectTypeDefs,
-      objectImageTypeDefs
+      objectImageTypeDefs,
+      clientTypeDefs
     ],
     resolvers: [
       userResolver,
       typeResolver,
       favoriteObjectsUserResolver,
       objectResolver,
-      objectImageResolver
+      objectImageResolver,
+      clientResolver
     ],
     context: ({ req }) => {
       const authorization = req.headers.authorization || '';

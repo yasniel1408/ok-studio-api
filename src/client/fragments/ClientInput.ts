@@ -1,7 +1,7 @@
 import { gql } from 'graphql-tag';
 
 export const ClientInput = gql`
-  input ObjectInput {
+  input ClientInput {
     name: String!
     age: Int!
     mobile: String!
