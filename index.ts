@@ -6,6 +6,7 @@ import http from 'http';
 import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path';
+import dotenv from 'dotenv';
 import getUser from './src/common/jwt/getUser';
 import { userResolver, userTypeDefs } from './src/user';
 import { typeResolver, typeTypeDefs } from './src/type';
@@ -18,6 +19,7 @@ import { objectImageResolver, objectImageTypeDefs } from './src/objectImage';
 import { clientResolver, clientTypeDefs } from './src/client';
 import { contractResolver, contractTypeDefs } from './src/contract';
 
+dotenv.config();
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'okstudiosupersecretkey';
 const port = process.env.PORT || 4000;
 const orm: PrismaClient = new PrismaClient();
@@ -31,7 +33,12 @@ app.use(cors());
 app.use(helmet());
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/index.html'));
+  res.sendFile(
+    path.join(
+      __dirname,
+      process.env.NODE_ENV === 'production' ? '../views/index.html' : './views/index.html'
+    )
+  );
 });
 
 (async () => {
