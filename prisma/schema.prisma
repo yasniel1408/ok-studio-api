@@ -103,8 +103,8 @@ model Appointment {
   client      Client @relation(fields: [clientId], references: [id])
   contractId  String?
   contract    Contract? @relation(fields: [contractId], references: [id])
-  aceptado    String
-  notas       String
+  accepted    String
+  notes       String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

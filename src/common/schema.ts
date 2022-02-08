@@ -76,7 +76,20 @@ export const schema = gql`
   type SampleImage {
     id: ID!
     typeId: ID!
+    type: Type!
     url: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type SampleImage {
+    id: ID!
+    clientId: ID!
+    client: Client!
+    contractId: ID!
+    contract: Client!
+    accepted: String!
+    notes: String!
     createdAt: String!
     updatedAt: String!
   }
