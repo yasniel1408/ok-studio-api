@@ -77,5 +77,8 @@
       "pretty-quick --staged",
       "git add"
     ]
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
