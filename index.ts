@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
   res.sendFile(
     path.join(
       __dirname,
-      process.env.NODE_ENV === 'production' ? '../views/index.html' : './views/index.html'
+      process.env.NODE_ENV === 'development' ? './client/index.html' : '../client/index.html'
     )
   );
 });
