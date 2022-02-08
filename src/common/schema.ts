@@ -72,4 +72,12 @@ export const schema = gql`
     createdAt: String!
     updatedAt: String!
   }
+
+  type SampleImage {
+    id: ID!
+    typeId: ID!
+    url: String!
+    createdAt: String!
+    updatedAt: String!
+  }
 `;
