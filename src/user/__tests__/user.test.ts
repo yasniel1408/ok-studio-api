@@ -4,7 +4,7 @@
 // import EasyGraphQLTester from 'easygraphql-tester';
 
 // import { userTypeDefs } from '..';
-// import { userResolver } from '../user.resolver';
+// import { userResolver } from '../userResolver';
 
 // const tester = new EasyGraphQLTester(userTypeDefs, userResolver);
 
