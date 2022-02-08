@@ -82,7 +82,7 @@ export const schema = gql`
     updatedAt: String!
   }
 
-  type SampleImage {
+  type Appointment {
     id: ID!
     clientId: ID!
     client: Client!
