@@ -18,6 +18,8 @@ import { objectResolver, objectTypeDefs } from './src/object';
 import { objectImageResolver, objectImageTypeDefs } from './src/objectImage';
 import { clientResolver, clientTypeDefs } from './src/client';
 import { contractResolver, contractTypeDefs } from './src/contract';
+import { sampleImageResolver, sampleImageTypeDefs } from './src/sampleImage';
+import { appointmentResolver, appointmentTypeDefs } from './src/appointment';
 
 dotenv.config();
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'okstudiosupersecretkey';
@@ -50,7 +52,9 @@ app.get('/', (req, res) => {
       objectTypeDefs,
       objectImageTypeDefs,
       clientTypeDefs,
-      contractTypeDefs
+      contractTypeDefs,
+      sampleImageTypeDefs,
+      appointmentTypeDefs
     ],
     resolvers: [
       userResolver,
@@ -59,7 +63,9 @@ app.get('/', (req, res) => {
       objectResolver,
       objectImageResolver,
       clientResolver,
-      contractResolver
+      contractResolver,
+      sampleImageResolver,
+      appointmentResolver
     ],
     context: ({ req }) => {
       const authorization = req.headers.authorization || '';
