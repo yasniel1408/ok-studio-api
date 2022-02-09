@@ -1,26 +1,15 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// generator client {
-//   provider = "prisma-client-js"
-// }
+generator client {
+  provider = "prisma-client-js"
+}
 
 //sqlite
-// datasource db {
-//   provider = "sqlite"
-//   url      = "file:./dev.db"
-// }
-
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["mongoDb"]
-}
-
 datasource db {
-  provider = "mongodb"
-  url      = "mongodb+srv://okstudio:-#aXaz!9gE22MDQ@cluster0.betxm.mongodb.net:27017/okstudio?ssl=true&connectTimeoutMS=5000&maxPoolSize=50"
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
-
 
 
 model Type {
