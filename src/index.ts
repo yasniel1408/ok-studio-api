@@ -7,19 +7,16 @@ import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path';
 import dotenv from 'dotenv';
-import getUser from './src/common/jwt/getUser';
-import { userResolver, userTypeDefs } from './src/user';
-import { typeResolver, typeTypeDefs } from './src/type';
-import {
-  favoriteObjectsUserResolver,
-  favoriteObjectsUserTypeDefs
-} from './src/favoriteObjectsUser';
-import { objectResolver, objectTypeDefs } from './src/object';
-import { objectImageResolver, objectImageTypeDefs } from './src/objectImage';
-import { clientResolver, clientTypeDefs } from './src/client';
-import { contractResolver, contractTypeDefs } from './src/contract';
-import { sampleImageResolver, sampleImageTypeDefs } from './src/sampleImage';
-import { appointmentResolver, appointmentTypeDefs } from './src/appointment';
+import getUser from './common/jwt/getUser';
+import { userResolver, userTypeDefs } from './user';
+import { typeResolver, typeTypeDefs } from './type';
+import { favoriteObjectsUserResolver, favoriteObjectsUserTypeDefs } from './favoriteObjectsUser';
+import { objectResolver, objectTypeDefs } from './object';
+import { objectImageResolver, objectImageTypeDefs } from './objectImage';
+import { clientResolver, clientTypeDefs } from './client';
+import { contractResolver, contractTypeDefs } from './contract';
+import { sampleImageResolver, sampleImageTypeDefs } from './sampleImage';
+import { appointmentResolver, appointmentTypeDefs } from './appointment';
 
 dotenv.config();
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'okstudiosupersecretkey';
@@ -35,12 +32,8 @@ app.use(cors());
 app.use(helmet());
 
 app.get('/', (req, res) => {
-  res.sendFile(
-    path.join(
-      __dirname,
-      process.env.NODE_ENV === 'development' ? './public/index.html' : '../public/index.html'
-    )
-  );
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.json({ api: 'OK STUDIO' });
 });
 
 (async () => {
@@ -82,8 +75,7 @@ app.get('/', (req, res) => {
     path: '/graphql'
   });
 
-  // Modified server startup
   await httpServer.listen({ port });
   // eslint-disable-next-line no-console
-  console.log(`🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`);
+  console.log(`🚀 Server ready at http://localhost:${port}${apolloServer.graphqlPath}`);
 })();
