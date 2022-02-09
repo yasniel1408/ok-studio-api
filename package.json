@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc --build",
     "clean": "rm -rf dist",
-    "build": "prisma generate && yarn prisma-prod && yarn create-admin && tsc -p .",
+    "build": "prisma generate && yarn prisma-dev && tsc -p .",
     "prettier": "npx prettier . --write",
     "eslint": "npx eslint . --fix --cache",
     "dev": "cross-env NODE_ENV=development nodemon",
@@ -14,8 +14,7 @@
     "test": "cross-env NODE_ENV=test jest src",
     "create-admin": "ts-node ./src/common/createAdmin.ts --unhandled-rejections=strict",
     "prepare": "husky install",
-    "prisma-dev": "npx prisma migrate dev",
-    "prisma-prod": "npx prisma migrate prod"
+    "prisma-dev": "npx prisma migrate dev"
   },
   "repository": {
     "type": "git",
