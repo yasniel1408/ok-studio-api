@@ -33,7 +33,6 @@ app.use(helmet());
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
-  res.json({ api: 'OK STUDIO' });
 });
 
 (async () => {

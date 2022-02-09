@@ -18,7 +18,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = "mongodb+srv://okstudio:-#aXaz!9gE22MDQ@cluster0.betxm.mongodb.net:27017/okstudio?ssl=true&connectTimeoutMS=5000&maxPoolSize=50"
 }
 
 

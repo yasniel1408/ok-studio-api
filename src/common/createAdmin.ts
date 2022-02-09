@@ -25,7 +25,7 @@ prompt.get(
       required: true
     }
   ],
-  async (err, result) => {
+  async (err: any, result: any) => {
     if (err) {
       console.warn('Huh. Something went wrong.');
       return;
