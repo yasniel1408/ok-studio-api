@@ -6,3 +6,5 @@ yarn.lock
 combined.log
 error.log
 *.db
+
+.vercel
