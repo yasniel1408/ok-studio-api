@@ -17,7 +17,6 @@
     "create-admin": "ts-node ./src/common/createAdmin.ts --unhandled-rejections=strict",
     "prepare": "husky install",
     "prisma-dev": "npx prisma migrate dev",
-    "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
   "repository": {
     "type": "git",
