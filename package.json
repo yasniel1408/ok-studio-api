@@ -7,7 +7,8 @@
     "tsc": "tsc --build",
     "clean": "rm -rf dist",
     "build": "prisma generate && npm run prisma-dev && tsc -p .",
-    "postinstall": "tsc -w",
+    "postinstall": "tsc",
+    "watch-ts": "tsc -w",
     "prettier": "npx prettier . --write",
     "eslint": "npx eslint . --fix --cache",
     "dev": "cross-env NODE_ENV=development nodemon",
@@ -15,7 +16,8 @@
     "test": "cross-env NODE_ENV=test jest src",
     "create-admin": "ts-node ./src/common/createAdmin.ts --unhandled-rejections=strict",
     "prepare": "husky install",
-    "prisma-dev": "npx prisma migrate dev"
+    "prisma-dev": "npx prisma migrate dev",
+    "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
   "repository": {
     "type": "git",
