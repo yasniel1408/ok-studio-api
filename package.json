@@ -6,8 +6,8 @@
   "scripts": {
     "tsc": "tsc --build",
     "clean": "rm -rf dist",
-    "build": "prisma generate && npm run prisma-dev && tsc -p .",
-    "postinstall": "tsc && npm run create-admin",
+    "build": "prisma generate && npm run prisma-dev && tsc -p . && npm run create-admin",
+    "postinstall": "tsc",
     "watch-ts": "tsc -w",
     "prettier": "npx prettier . --write",
     "eslint": "npx eslint . --fix --cache",
