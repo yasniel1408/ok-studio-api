@@ -10,7 +10,7 @@
     "prettier": "npx prettier . --write",
     "eslint": "npx eslint . --fix --cache",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "start": "cross-env NODE_ENV=production tsc -w node ./dist/index.js",
+    "start": "cross-env NODE_ENV=production node ./src/index.ts",
     "test": "cross-env NODE_ENV=test jest src",
     "create-admin": "ts-node ./src/common/createAdmin.ts --unhandled-rejections=strict",
     "prepare": "husky install",
