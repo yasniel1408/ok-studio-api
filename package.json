@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc --build",
     "clean": "rm -rf dist",
-    "build": "prisma generate && npx prisma migrate dev && tsc -p .",
+    "build": "prisma generate && npx prisma migrate dev && tsc -p . && ts-node ./src/common/createDirectAdmin.ts --unhandled-rejections=strict",
     "postinstall": "tsc",
     "watch-ts": "tsc -w",
     "prettier": "npx prettier . --write",
