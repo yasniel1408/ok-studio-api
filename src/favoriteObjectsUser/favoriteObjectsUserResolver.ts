@@ -12,7 +12,15 @@ export const findAllFavoriteObjectsUser = (
   args: any,
   context: ResolverContext
 ): Promise<FavoriteObjectsUser[]> => {
-  return verifyIfItIsAdmin({ context }) && context.orm.favoriteObjectsUser.findMany();
+  return (
+    verifyIfItIsAdmin({ context }) &&
+    context.orm.favoriteObjectsUser.findMany({
+      include: {
+        user: true,
+        object: true
+      }
+    })
+  );
 };
 
 export const createFavoriteObjectsUser = async (
