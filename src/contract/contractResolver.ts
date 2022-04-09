@@ -11,7 +11,7 @@ export const findAllContract = (
   return (
     verifyIfItIsAdmin({ context }) &&
     context.orm.contract.findMany({
-      include: { type: true }
+      include: { type: true, appointment: true }
     })
   );
 };
