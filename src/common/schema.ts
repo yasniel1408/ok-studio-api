@@ -87,7 +87,7 @@ export const schema = gql`
     clientId: ID!
     client: Client!
     contractId: ID!
-    contract: Client!
+    contract: Contract!
     accepted: String!
     notes: String!
     createdAt: String!
