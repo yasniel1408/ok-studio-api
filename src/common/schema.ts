@@ -69,8 +69,10 @@ export const schema = gql`
     id: ID!
     name: String!
     typeId: ID!
+    type: Type!
     createdAt: String!
     updatedAt: String!
+    appointment: Appointment!
   }
 
   type SampleImage {
