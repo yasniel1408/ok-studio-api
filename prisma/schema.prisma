@@ -6,9 +6,14 @@ generator client {
 }
 
 //sqlite
+//datasource db {
+//  provider = "sqlite"
+//  url      = "file:./dev.db"
+//}
+
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url = "postgres://default:75qatdKguODB@ep-polished-king-784487.us-east-1.postgres.vercel-storage.com:5432/verceldb"
 }
 
 
