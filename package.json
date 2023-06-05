@@ -11,7 +11,7 @@
     "watch-ts": "tsc -w",
     "prettier": "npx prettier . --write",
     "eslint": "npx eslint . --fix --cache",
-    "dev": "cross-env NODE_ENV=development nodemon",
+    "dev": "ts-node ./src/common/createDataExample.ts && cross-env NODE_ENV=development nodemon",
     "start": "ts-node ./src/common/createDataExample.ts && cross-env NODE_ENV=production node ./build/index.js",
     "test": "cross-env NODE_ENV=test jest src",
     "create-admin": "ts-node ./src/common/createDirectAdmin.ts --unhandled-rejections=strict",
