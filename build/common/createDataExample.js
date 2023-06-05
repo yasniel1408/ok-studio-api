@@ -19,6 +19,15 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
     // users
     yield orm.user.create({
         data: {
+            id: '0u',
+            password: yield (0, encryptPassword_1.default)('admin'),
+            name: 'ADMIN',
+            email: 'admin@gmail.com',
+            role: 'ADMIN'
+        }
+    });
+    yield orm.user.create({
+        data: {
             id: '1u',
             password: yield (0, encryptPassword_1.default)('pepita123'),
             name: 'pepita',
