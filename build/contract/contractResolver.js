@@ -17,7 +17,7 @@ const verifyIfItIsAdmin_1 = __importDefault(require("../common/middlewares/verif
 const findAllContract = (parent, args, context) => {
     return ((0, verifyIfItIsAdmin_1.default)({ context }) &&
         context.orm.contract.findMany({
-            include: { type: true }
+            include: { appointment: true, type: true }
         }));
 };
 exports.findAllContract = findAllContract;

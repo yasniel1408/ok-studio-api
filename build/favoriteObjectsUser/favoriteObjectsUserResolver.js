@@ -15,7 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.favoriteObjectsUserResolver = exports.createFavoriteObjectsUser = exports.findAllFavoriteObjectsUser = void 0;
 const verifyIfItIsAdmin_1 = __importDefault(require("../common/middlewares/verifyIfItIsAdmin"));
 const findAllFavoriteObjectsUser = (parent, args, context) => {
-    return (0, verifyIfItIsAdmin_1.default)({ context }) && context.orm.favoriteObjectsUser.findMany();
+    return ((0, verifyIfItIsAdmin_1.default)({ context }) &&
+        context.orm.favoriteObjectsUser.findMany({
+            include: {
+                user: true,
+                object: true
+            }
+        }));
 };
 exports.findAllFavoriteObjectsUser = findAllFavoriteObjectsUser;
 const createFavoriteObjectsUser = (parent, args, context) => __awaiter(void 0, void 0, void 0, function* () {

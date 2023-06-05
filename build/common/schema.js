@@ -71,8 +71,10 @@ exports.schema = (0, graphql_tag_1.gql) `
     id: ID!
     name: String!
     typeId: ID!
+    type: Type!
     createdAt: String!
     updatedAt: String!
+    appointment: Appointment!
   }
 
   type SampleImage {
@@ -89,7 +91,7 @@ exports.schema = (0, graphql_tag_1.gql) `
     clientId: ID!
     client: Client!
     contractId: ID!
-    contract: Client!
+    contract: Contract!
     accepted: String!
     notes: String!
     createdAt: String!
