@@ -7,6 +7,15 @@ const run = async () => {
   // users
   await orm.user.create({
     data: {
+      id: '0u',
+      password: await encryptPassword('admin'),
+      name: 'ADMIN',
+      email: 'admin@gmail.com',
+      role: 'ADMIN'
+    }
+  });
+  await orm.user.create({
+    data: {
       id: '1u',
       password: await encryptPassword('pepita123'),
       name: 'pepita',
